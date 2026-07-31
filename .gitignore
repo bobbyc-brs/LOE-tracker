@@ -1,0 +1,23 @@
+# Real client/timesheet data -- not code, kept local only.
+# Akkodis/ excluded entirely, not just generated output: the client-provided
+# *template* itself has real contract/assignment numbers pre-filled in its
+# cells (Client, Assignment #, Contract #, TA/PO #), not just blank rows.
+work_log.json
+app_state.json
+/Timesheets/
+/Akkodis/
+/data/
+/Screenshots/
+workhours_*.csv
+workhours_*.html
+
+# Local-only backups and tool state
+*internal-backup*
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+
+# Office lock files
+~$*
