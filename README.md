@@ -25,6 +25,35 @@ python import_timesheets.py [--dry-run] [--force]   # import ./Timesheets/*.pdf 
 python fill_akkodis_timesheet.py <year> <month>      # fill a monthly xlsx template from work_log.json
 ```
 
+## Monthly routine
+
+1. Drop the new timecard PDFs into `./Timesheets/`.
+2. Preview the import and check what it would add:
+
+   ```
+   python import_timesheets.py --dry-run
+   ```
+
+   Look for missing weekdays in the "Would add" list (a missing PDF, or a
+   day that needs a status set in the app) and for any "Mismatches" lines.
+   Already-imported dates are skipped, so re-running is safe.
+3. Import for real:
+
+   ```
+   python import_timesheets.py
+   ```
+
+4. Generate the month's sheet (overwrites any existing one for that month):
+
+   ```
+   python fill_akkodis_timesheet.py <year> <month>
+   ```
+
+   A `WARNING: ... weekday(s) with no logged entries` line means workdays
+   with no hours -- usually a missing timesheet.
+5. If the import added dates from the previous month (a week that spans
+   the month boundary), regenerate that month's sheet too.
+
 Both are tied to one specific vendor's file format (a particular PDF
 timecard export, and a particular monthly-timesheet xlsx template) — not
 universal importers/exporters. Treat them as worked samples of "how to
