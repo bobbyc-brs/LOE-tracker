@@ -52,7 +52,9 @@ python fill_akkodis_timesheet.py <year> <month>      # fill a monthly xlsx templ
    A `WARNING: ... weekday(s) with no logged entries` line means workdays
    with no hours -- usually a missing timesheet.
 5. If the import added dates from the previous month (a week that spans
-   the month boundary), regenerate that month's sheet too.
+   the month boundary), regenerate that month's sheet too -- but only if
+   it hasn't been sent yet. Regenerating overwrites the file, so once a
+   month has been submitted, leave its sheet alone.
 
 Both are tied to one specific vendor's file format (a particular PDF
 timecard export, and a particular monthly-timesheet xlsx template) — not
